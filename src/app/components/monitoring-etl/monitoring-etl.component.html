@@ -1,0 +1,22 @@
+<dx-data-grid
+  id="etlGrid"
+  [dataSource]="data"
+  [columnHidingEnabled]="true"
+  [columns]="['name', 'isWork', 'isError', 'lastStartDate', 'lastErrorDate', 'lastErrorMessage']"
+  [showBorders]="true">
+
+  <dxo-editing 
+    mode="cell"
+    [allowUpdating]="true">
+  </dxo-editing>
+
+  <dxo-paging [pageSize]="10"></dxo-paging>
+
+  <dxi-column dataField="name" caption="Name" [allowEditing]="false"></dxi-column>
+  <dxi-column dataField="isWork" caption="On / Off"></dxi-column>
+  <dxi-column dataField="isError" caption="Error" [allowEditing]="false"></dxi-column>
+  <dxi-column dataField="lastStartDate" caption="Last start date" dataType="date" format="dd.MM.yyyy" [allowEditing]="false"></dxi-column>
+  <dxi-column dataField="lastErrorDate" caption="Last error date" dataType="date" format="dd.MM.yyyy" [allowEditing]="false"></dxi-column>
+  <dxi-column dataField="lastErrorMessage" caption="Last error message" [allowEditing]="false"></dxi-column>
+
+</dx-data-grid>

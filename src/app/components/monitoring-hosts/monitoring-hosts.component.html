@@ -1,0 +1,55 @@
+<div class="hosts-grid">
+  <div class="hosts-grid__inner">
+    <dx-data-grid
+      rowTemplate="warningRowTemplate"
+      [dataSource]="data"
+      [columns]="['name', 'cpu', 'memory', 'freeDiskSpace', 'fullDiskSpace']"
+      [showBorders]="true">
+
+      <dxi-column dataField="name" caption="Name"></dxi-column>
+      <dxi-column dataField="cpu" caption="CPU" dataType="number"></dxi-column>
+      <dxi-column dataField="memory" caption="Memory" dataType="number"></dxi-column>
+      <dxi-column dataField="freeDiskSpace" caption="Free disk space" dataType="number"></dxi-column>
+      <dxi-column dataField="fullDiskSpace" caption="Full disk space" dataType="number"></dxi-column>
+
+      <tbody class="dx-row custom-table" *dxTemplate="let item of 'warningRowTemplate'">
+        <tr class="custom-table__row" [ngClass]="{'custom-table__row--warning': (item.data.cpu >= 0.8 || item.data.memory >= 0.8)}">
+          <td [ngStyle]="{borderRight: '1px solid #dedede'}">{{item.data.name}}</td>
+          <td [ngStyle]="{borderRight: '1px solid #dedede'}">
+            <ng-container *ngTemplateOutlet="bullet; context: {value: item.data.cpu}"></ng-container>
+          </td>
+          <td [ngStyle]="{borderRight: '1px solid #dedede'}">
+            <ng-container *ngTemplateOutlet="bullet; context: {value: item.data.memory}"></ng-container>
+          </td>
+          <td [ngStyle]="{textAlign: 'right', borderRight: '1px solid #dedede'}">{{item.data.freeDiskSpace}}</td>
+          <td [ngStyle]="{textAlign: 'right'}">{{item.data.fullDiskSpace}}</td>
+        </tr>
+      </tbody>
+
+      <ng-template #bullet let-value="value">
+        <div class="chart-cell">
+          <dx-bullet
+            [showTarget]="false"
+            [showZeroLevel]="true"
+            [startScaleValue]="0"
+            [endScaleValue]="100"
+            [value]="value * 100">
+            <dxo-size [width]="150" [height]="35"></dxo-size>
+            <dxo-tooltip
+              [enabled]="true"
+              [paddingTopBottom]="2"
+              [customizeTooltip]="customizeTooltip">
+              <dxo-font [size]="18"></dxo-font>
+            </dxo-tooltip>
+            <dxo-margin
+                [top]="5"
+                [bottom]="0"
+                [left]="5"
+            ></dxo-margin>
+          </dx-bullet>
+        </div>
+      </ng-template>
+
+    </dx-data-grid>
+  </div>
+</div>

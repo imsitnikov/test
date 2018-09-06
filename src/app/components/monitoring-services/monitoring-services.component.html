@@ -1,0 +1,17 @@
+<dx-data-grid
+  id="etlGrid"
+  [dataSource]="data"
+  [columnHidingEnabled]="true"
+  [columns]="['name', 'tags', 'status', 'releaseVersion']"
+  [showBorders]="true">
+
+  <dxo-paging [pageSize]="10"></dxo-paging>
+
+  <dxo-group-panel [visible]="true"></dxo-group-panel>
+
+  <dxi-column dataField="name" caption="Name"></dxi-column>
+  <dxi-column dataField="tags" caption="Tags"></dxi-column>
+  <dxi-column dataField="status" caption="Status"></dxi-column>
+  <dxi-column dataField="releaseVersion" caption="Release version"></dxi-column>
+
+</dx-data-grid>

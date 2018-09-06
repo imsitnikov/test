@@ -1,0 +1,35 @@
+.header-menu {
+  &__list {
+    display: flex;
+    margin: auto;
+    padding: 0;
+    list-style: none;
+  }
+  &__item {
+    margin-right: 35px;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  &__link {
+    color: #fff;
+    &--active {
+      text-decoration: none;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .header-menu {
+    &__list {
+      display: block;
+      margin: 10px 0;
+    }
+    &__item {
+      margin: 0 0 15px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
